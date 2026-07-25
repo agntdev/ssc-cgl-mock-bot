@@ -1,19 +1,38 @@
 [
   {
-    "name": "Admin Panel",
+    "name": "Admin setup protects uploads and validates JSON",
     "steps": [
       {
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Access password-protected admin interface"
+              "text": "Set the initial admin password. Use at least 8 characters."
             }
           }
         ],
         "send": {
           "callback": "admin:login"
         }
+      },
+      {
+        "send": { "text": "securepass" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Your admin password is set." } },
+          { "method": "sendMessage", "payload": { "text": "Manage mock tests and results." } }
+        ]
+      },
+      {
+        "send": { "callback": "admin:upload" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Send the test JSON as a message or a .json document. It must contain 100 bilingual questions across four sections." } }
+        ]
+      },
+      {
+        "send": { "text": "not-json" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "That JSON could not be read. Check the format and send it again." } }
+        ]
       }
     ]
   }
