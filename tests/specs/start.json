@@ -7,7 +7,7 @@
         "expect": [
           {
             "method": "sendMessage",
-            "payload": { "text": "👋 Welcome! Tap a button below to get started." }
+            "payload": { "text": "Choose a mock test or open the admin panel." }
           }
         ]
       }

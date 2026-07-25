@@ -1,19 +1,31 @@
 [
   {
-    "name": "Start Test",
+    "name": "Candidate profile is saved before test selection",
     "steps": [
       {
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Begin test after entering name and roll number"
+              "text": "Enter your full name."
             }
           }
         ],
         "send": {
           "callback": "test:start"
         }
+      },
+      {
+        "send": { "text": "Asha Singh" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "Enter your roll number." } }
+        ]
+      },
+      {
+        "send": { "text": "CGL/2026/001" },
+        "expect": [
+          { "method": "sendMessage", "payload": { "text": "No mock test is available yet. Ask your administrator to upload one." } }
+        ]
       }
     ]
   }
